@@ -1,4 +1,6 @@
-# template from https://github.com/github/gitignore 
+# template from https://github.com/github/gitignore
+# models
+models/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
