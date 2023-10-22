@@ -1,6 +1,7 @@
 # template from https://github.com/github/gitignore
 # models
 models/
+images/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
