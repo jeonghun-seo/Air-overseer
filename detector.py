@@ -10,8 +10,7 @@ def detect(mode):
         model = YOLO('models/yolov8n_normal.pt')
     elif mode == "fire":
         print("산불 감지 모드")
-        model = YOLO('models/yolov8n_fire.pt')
-        cap1 = cv2.VideoCapture(1)
+        model = YOLO('models/yolov8_fire.pt')
     
     cap = cv2.VideoCapture(0) # 캡쳐 디바이스 선택
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640) # 캡쳐할 화면의 가로 크기 설정
@@ -46,7 +45,7 @@ def detect(mode):
         if mode == "person":
             result = model(frame,classes=[0,1])[0]
         elif mode == "fire":
-            result = model(frame)
+            result = model(frame)[0]
         
         #모델이 객체를 감지한 정보를 가져와서 현재 감지된 객체의 갯수를 세고, 리스트에 저장
         detections = sv.Detections.from_ultralytics(result)
@@ -83,4 +82,4 @@ def detect(mode):
     return res_data
 
 if __name__=="__main__":
-    print(__name__)
+    print("main")
