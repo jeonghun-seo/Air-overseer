@@ -2,6 +2,10 @@
 # models
 models/
 images/
+
+#secret key
+secrets.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
