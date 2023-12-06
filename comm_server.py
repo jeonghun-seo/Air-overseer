@@ -20,8 +20,9 @@ def upload(img_name,result_str):
         print("POST Done!")
 
 def check_status():
-    res = requests.get(f'http://{server_ip}:{port}/status')
+    res = requests.post(f'http://{server_ip}:{port}/status')
     flag = res.text
     print(f'now status is {flag}')
     return flag
-        
+
+check_status()
