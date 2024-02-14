@@ -25,3 +25,4 @@ def check_status():
     flag = res.text
     print(f'now status is {flag}')
     return flag
+check_status()
