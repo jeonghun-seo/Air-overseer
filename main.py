@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 import detector
 import comm_server
 import schedule
 import numpy as np
 import time
+import comm_arduino
 
 def run():
     flag = comm_server.check_status()
@@ -22,8 +24,9 @@ def run():
     #파일명 가져오기
     img_name = detected_list[-1]
     
+    sensor_data = comm_arduino.get_data()
     #서버에 POST요청
-    comm_server.upload(img_name,result_str)
+    comm_server.upload(img_name,result_str,sensor_data)
 
 schedule.every(30).seconds.do(run)
 

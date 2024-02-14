@@ -10,18 +10,15 @@ def detect(mode):
         model = YOLO('models/yolov8n_normal.pt')
     elif mode == "fire":
         print("산불 감지 모드")
-        model = YOLO('models/yolov8n_fire.pt')
-        cap1 = cv2.VideoCapture(1)
+        model = YOLO('models/yolov8_fire.pt')
     
-    cap = cv2.VideoCapture(0) # 캡쳐 디바이스 선택
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640) # 캡쳐할 화면의 가로 크기 설정
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)# 캡쳐할 화면의 세로 크기 설정
+    cap = cv2.VideoCapture(0,cv2.CAP_V4L) # 캡쳐 디바이스 선택
     
     time_today = datetime.today() 
     today_data_format = time_today.strftime("%Y/%m/%d, %H:%M:%S")
     save_image = f'images/{time_today.strftime("%Y%m%d_%H%M%S")}_result.png'
     
-    capture_duration = 15 # 객체 감지가 실행될 시간
+    capture_duration = 100 # 객체 감지가 실행될 시간
     start_time = time.time()
     
     box_annotator = sv.BoxAnnotator(
@@ -46,7 +43,7 @@ def detect(mode):
         if mode == "person":
             result = model(frame,classes=[0,1])[0]
         elif mode == "fire":
-            result = model(frame)
+            result = model(frame)[0]
         
         #모델이 객체를 감지한 정보를 가져와서 현재 감지된 객체의 갯수를 세고, 리스트에 저장
         detections = sv.Detections.from_ultralytics(result)
@@ -71,6 +68,7 @@ def detect(mode):
             labels=labels)
 
         cv2.imshow('Air Overseer', frame) # 화면에 결과 출력
+        k = cv2.waitKey(1)
         stop = int(time.time() - start_time) # 시작 시간으로부터 지난 시간 저장
         if stop > capture_duration or cv2.waitKey(1) == ord('q'): #캡쳐 시간이 다 되었거나 q키를 누를경우 종료
             cv2.imwrite(save_image, frame) # 이미지파일 저장
@@ -83,4 +81,4 @@ def detect(mode):
     return res_data
 
 if __name__=="__main__":
-    print(__name__)
+    print("main")

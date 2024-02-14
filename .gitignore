@@ -1,10 +1,4 @@
 # template from https://github.com/github/gitignore
-# models
-models/
-images/
-
-#secret key
-secrets.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
