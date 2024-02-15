@@ -1,10 +1,10 @@
 # Air-overseer
 Multipurpose Environmental Monitoring Drone
 
-#Schematic
+# Schematic
 ![air-overseer-schematic](https://github.com/jeonghun-seo/Air-overseer/assets/105413553/a6dcd154-cc7a-436c-9faf-85e08acf5f0d)
 
-#Features
+# Features
 - real-time detection on edge device
   - wildfire detect mode
   - missing persons detect mode
